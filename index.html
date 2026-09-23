@@ -135,10 +135,12 @@ section.block h2{font-size:clamp(2rem,6vw,3.25rem);margin-bottom:1.5rem}
 .giftnote p{margin:0 0 .5rem}
 footer{text-align:center;padding:3rem 0 4rem;color:var(--soft)}
 #confetti{position:fixed;inset:0;pointer-events:none;width:100%;height:100%}
+@keyframes fadeout{to{opacity:0}}
+@keyframes smokefade{0%{opacity:.6}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){
   .flame{animation:none}
-  .candle.out .flame{animation:none;opacity:0}
-  .candle.out .smoke{animation:none}
+  .candle.out .flame{animation:fadeout .5s ease-out forwards}
+  .candle.out .smoke{animation:smokefade 1.2s ease-out forwards}
   .giftbox:not(.open) svg{animation:none}
   .lid,.gem{transition:none}
 }
@@ -282,7 +284,7 @@ function finish(){
 
 document.getElementById("wishBtn").addEventListener("click", () => {
   const all = [...group.querySelectorAll(".candle:not(.out)")];
-  all.forEach((c, i) => setTimeout(() => blow(c), reduce ? 0 : i * 45));
+  all.forEach((c, i) => setTimeout(() => blow(c), i * 45));
 });
 
 document.getElementById("againBtn").addEventListener("click", () => {
