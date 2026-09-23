@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy 46th Birthday, Dad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Bricolage+Grotesque:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#000000;
+  --ink:#F2F6FF;
+  --soft:#8FA9D6;
+  --mustard:#2F6BFF;
+  --frost:#7FB2FF;
+  --cake:#1B3A7A;
+  --flame:#FF8A1F;
+  --card:#0E1A33;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--sky:#000000;--ink:#F2F6FF;--card:#0E1A33}
+}
+:root[data-theme="dark"]{--sky:#000000;--ink:#F2F6FF;--card:#0E1A33}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;
+  background:var(--sky);
+  color:var(--ink);
+  font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:1.125rem;
+  line-height:1.6;
+}
+h1,h2{
+  font-family:"Bagel Fat One","Arial Rounded MT Bold",system-ui,sans-serif;
+  font-weight:400;
+  line-height:1.05;
+  margin:0;
+}
+main{max-width:60rem;margin:0 auto;padding:0 1.25rem}
+.hero{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:1.5rem;
+  padding:3rem 0;
+}
+.hero h1{font-size:clamp(2.75rem,10vw,6.5rem);color:var(--ink)}
+.hint{color:var(--soft);margin:0;min-height:1.6em}
+.cake{width:min(22rem,90%);height:auto;overflow:visible}
+.candle{cursor:pointer}
+.candle:focus{outline:none}
+.candle:focus-visible .wick-ring{stroke:var(--ink);stroke-width:3}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flicker .6s ease-in-out infinite alternate}
+.candle.out .flame{animation:puff .4s ease-out forwards}
+.smoke{opacity:0}
+.candle.out .smoke{animation:smoke 1.4s ease-out forwards}
+@keyframes flicker{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.9,1.1) rotate(3deg)}}
+@keyframes puff{to{transform:scale(0);opacity:0}}
+@keyframes smoke{0%{opacity:.6;transform:translateY(0)}100%{opacity:0;transform:translateY(-30px)}}
+button.wish{
+  font:inherit;
+  font-weight:600;
+  background:var(--mustard);
+  color:#FFFFFF;
+  border:0;
+  border-radius:999px;
+  padding:.8rem 1.8rem;
+  cursor:pointer;
+  box-shadow:0 4px 0 #1D47B8;
+}
+button.wish:active{transform:translateY(3px);box-shadow:0 1px 0 #1D47B8}
+button.wish:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.reveal{display:none}
+.reveal.show{display:block}
+section.block{padding:4rem 0}
+section.block h2{font-size:clamp(2rem,6vw,3.25rem);margin-bottom:1.5rem}
+.reasons{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.reasons li{
+  background:var(--card);
+  padding:1.25rem 1.4rem;
+  border-radius:1.25rem 1.25rem 1.25rem .25rem;
+  border-left:6px solid var(--frost);
+}
+.reasons li:nth-child(3n+2){border-left-color:var(--mustard)}
+.reasons li:nth-child(3n){border-left-color:#FFFFFF}
+.letter{
+  background:var(--card);
+  padding:2rem;
+  border-radius:1.5rem;
+  max-width:38rem;
+  font-size:1.2rem;
+  transform:rotate(-1deg);
+}
+.letter p{margin:0 0 1rem}
+.letter .sign{font-family:"Bagel Fat One",system-ui,sans-serif;font-size:1.6rem;margin:0}
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:1rem}
+.photos figure{margin:0;background:var(--card);padding:.6rem .6rem 1rem;border-radius:.5rem}
+.photos figure:nth-child(odd){transform:rotate(-1.5deg)}
+.photos figure:nth-child(even){transform:rotate(1.5deg)}
+.photos img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:.25rem}
+.photos figcaption{color:var(--soft);font-size:1rem;margin-top:.6rem;text-align:center}
+.gift{text-align:center}
+.giftbox{
+  font:inherit;
+  color:var(--soft);
+  background:none;
+  border:0;
+  cursor:pointer;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.5rem;
+  padding:.5rem;
+  border-radius:1rem;
+}
+.giftbox:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+.giftbox svg{width:min(14rem,70vw);height:auto;overflow:visible}
+.lid{transition:transform .6s cubic-bezier(.3,1.6,.5,1)}
+.gem{opacity:0;transform:translateY(20px);transition:opacity .4s .25s,transform .6s .25s cubic-bezier(.3,1.6,.5,1)}
+.giftbox.open .lid{transform:translate(40px,-50px) rotate(18deg)}
+.giftbox.open .gem{opacity:1;transform:translateY(-40px)}
+.giftbox:not(.open) svg{animation:wiggle 2.4s ease-in-out infinite}
+@keyframes wiggle{0%,80%,100%{transform:rotate(0)}85%{transform:rotate(-4deg)}90%{transform:rotate(4deg)}95%{transform:rotate(-2deg)}}
+.giftnote{max-width:32rem;margin:1.5rem auto 0}
+.giftnote .big{font-family:"Bagel Fat One",system-ui,sans-serif;font-size:1.8rem;line-height:1.2;margin:0 0 .5rem}
+.giftnote p{margin:0 0 .5rem}
+footer{text-align:center;padding:3rem 0 4rem;color:var(--soft)}
+#confetti{position:fixed;inset:0;pointer-events:none;width:100%;height:100%}
+@media (prefers-reduced-motion:reduce){
+  .flame{animation:none}
+  .candle.out .flame{animation:none;opacity:0}
+  .candle.out .smoke{animation:none}
+  .giftbox:not(.open) svg{animation:none}
+  .lid,.gem{transition:none}
+}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<main>
+  <section class="hero">
+    <h1>Happy 46th birthday, Dad</h1>
+    <svg class="cake" viewBox="0 0 320 260" role="img" aria-label="Birthday cake with 46 candles">
+      <ellipse cx="160" cy="245" rx="150" ry="12" fill="#2F6BFF" opacity=".25"/>
+      <rect x="40" y="150" width="240" height="90" rx="14" fill="var(--cake)"/>
+      <path d="M40 165 q20 22 40 0 q20 22 40 0 q20 22 40 0 q20 22 40 0 q20 22 40 0 q20 22 40 0 V150 a14 14 0 0 0 -14 -14 H54 a14 14 0 0 0 -14 14z" fill="var(--frost)"/>
+      <rect x="40" y="200" width="240" height="10" fill="var(--mustard)" opacity=".8"/>
+      <ellipse cx="160" cy="138" rx="118" ry="14" fill="var(--frost)"/>
+      <g id="candles"></g>
+    </svg>
+    <p class="hint" id="hint">Tap each flame to blow it out, or make a wish.</p>
+    <button class="wish" id="wishBtn">Make a wish</button>
+  </section>
+
+  <div class="reveal" id="reveal">
+    <section class="block">
+      <h2>Why you're the best</h2>
+      <ul class="reasons">
+        <li>You always know how to fix things, even when you pretend you're just "having a look."</li>
+        <li>You taught us to never give up, and you showed us how.</li>
+        <li>You show up. Every single time.</li>
+        <li>The way you make everyone around you feel safe.</li>
+        <li>You believed in us before we believed in ourselves.</li>
+      </ul>
+    </section>
+
+    <section class="block" id="photoSection" hidden>
+      <h2>Us through the years</h2>
+      <div class="photos" id="photos"></div>
+    </section>
+
+    <section class="block gift">
+      <h2>One more thing</h2>
+      <button class="giftbox" id="giftBtn" aria-expanded="false" aria-controls="giftNote">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <g class="lid">
+            <rect x="30" y="62" width="140" height="30" rx="6" fill="var(--frost)"/>
+            <rect x="90" y="62" width="20" height="30" fill="var(--mustard)"/>
+            <path d="M100 62 C80 30 55 40 70 58 C75 64 90 64 100 62 C110 64 125 64 130 58 C145 40 120 30 100 62z" fill="var(--mustard)"/>
+          </g>
+          <rect x="40" y="92" width="120" height="90" rx="6" fill="var(--frost)" opacity=".85"/>
+          <rect x="90" y="92" width="20" height="90" fill="var(--mustard)"/>
+          <g class="gem">
+            <path d="M100 70 L122 88 L100 120 L78 88z" fill="#2FBF4A"/>
+            <path d="M100 70 L122 88 L100 92 L78 88z" fill="#8EF09C"/>
+            <path d="M100 92 L100 120 L78 88z" fill="#1A8A30"/>
+          </g>
+        </svg>
+        <span id="giftLabel">Tap to open your present</span>
+      </button>
+      <div class="giftnote" id="giftNote" hidden>
+        <p class="big">Gems for your Clash of Clans village.</p>
+        <p>Your gift card is waiting in your email inbox. Go check it, then go build something great.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="letter">
+        <p>Dad,</p>
+        <p>Thank you for everything you do, the big things and all the small ones nobody notices. We're so lucky to have you, and we hope this year gives you back even a little of what you give us.</p>
+        <p>Have the best birthday. You deserve it.</p>
+        <p class="sign">Love, Kemi, Boka, Hlale and Juju</p>
+      </div>
+    </section>
+
+    <footer>
+      <button class="wish" id="againBtn">Light the candles again</button>
+    </footer>
+  </div>
+</main>
+
+<script>
+const AGE = 46;
+const ROWS = [15, 16, 15];
+const colors = ["#2F6BFF","#7FB2FF","#CFE0FF"];
+const group = document.getElementById("candles");
+const hint = document.getElementById("hint");
+const reveal = document.getElementById("reveal");
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let lit = 0;
+
+function buildCandles(){
+  group.innerHTML = "";
+  lit = AGE;
+  const bases = [126, 136, 146];
+  const heights = [26, 30, 34];
+  let n = 0;
+  ROWS.forEach((count, r) => {
+    const span = 200 + r * 10;
+    const gap = span / (count - 1);
+    const start = 160 - span / 2;
+    for(let i = 0; i < count; i++){
+      const x = start + gap * i;
+      const base = bases[r];
+      const h = heights[r];
+      const top = base - h;
+      const g = document.createElementNS("http://www.w3.org/2000/svg","g");
+      g.setAttribute("class","candle");
+      g.setAttribute("tabindex","0");
+      g.setAttribute("role","button");
+      g.setAttribute("aria-label","Blow out candle " + (n + 1));
+      g.innerHTML =
+        '<rect x="' + (x - 2.5) + '" y="' + top + '" width="5" height="' + h + '" rx="1.5" fill="' + colors[n % colors.length] + '"/>' +
+        '<line x1="' + x + '" y1="' + top + '" x2="' + x + '" y2="' + (top - 4) + '" stroke="#DDE6F7" stroke-width="1.2"/>' +
+        '<circle class="wick-ring" cx="' + x + '" cy="' + (top - 9) + '" r="7" fill="transparent" stroke="none"/>' +
+        '<path class="flame" d="M' + x + ' ' + (top - 17) + ' C' + (x + 4.5) + ' ' + (top - 11) + ' ' + (x + 3.5) + ' ' + (top - 4) + ' ' + x + ' ' + (top - 4) + ' C' + (x - 3.5) + ' ' + (top - 4) + ' ' + (x - 4.5) + ' ' + (top - 11) + ' ' + x + ' ' + (top - 17) + 'z" fill="var(--flame)" style="animation-delay:' + (-(n % 7) * 0.09) + 's"/>' +
+        '<circle class="smoke" cx="' + x + '" cy="' + (top - 8) + '" r="3" fill="#9aa"/>';
+      g.addEventListener("click", () => blow(g));
+      g.addEventListener("keydown", e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); blow(g); } });
+      group.appendChild(g);
+      n++;
+    }
+  });
+}
+
+function blow(c){
+  if(c.classList.contains("out")) return;
+  c.classList.add("out");
+  c.setAttribute("aria-label","Candle out");
+  lit--;
+  if(lit > 0){
+    hint.textContent = lit + (lit === 1 ? " candle" : " candles") + " left.";
+  } else {
+    finish();
+  }
+}
+
+function finish(){
+  hint.textContent = "Wish made. Scroll down.";
+  reveal.classList.add("show");
+  if(!reduce) confetti();
+}
+
+document.getElementById("wishBtn").addEventListener("click", () => {
+  const all = [...group.querySelectorAll(".candle:not(.out)")];
+  all.forEach((c, i) => setTimeout(() => blow(c), reduce ? 0 : i * 45));
+});
+
+document.getElementById("againBtn").addEventListener("click", () => {
+  buildCandles();
+  hint.textContent = "Tap each flame to blow it out, or make a wish.";
+  window.scrollTo({top:0, behavior: reduce ? "auto" : "smooth"});
+});
+
+const PHOTOS = [];
+if(PHOTOS.length){
+  const wrap = document.getElementById("photos");
+  PHOTOS.forEach(p => {
+    const f = document.createElement("figure");
+    const img = document.createElement("img");
+    img.src = p.src;
+    img.alt = p.caption || "Photo with Dad";
+    img.loading = "lazy";
+    f.appendChild(img);
+    if(p.caption){
+      const c = document.createElement("figcaption");
+      c.textContent = p.caption;
+      f.appendChild(c);
+    }
+    wrap.appendChild(f);
+  });
+  document.getElementById("photoSection").hidden = false;
+}
+
+const giftBtn = document.getElementById("giftBtn");
+giftBtn.addEventListener("click", () => {
+  if(giftBtn.classList.contains("open")) return;
+  giftBtn.classList.add("open");
+  giftBtn.setAttribute("aria-expanded","true");
+  document.getElementById("giftLabel").textContent = "Surprise!";
+  document.getElementById("giftNote").hidden = false;
+  if(!reduce) confetti();
+});
+
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+function confetti(){
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = innerWidth * dpr;
+  canvas.height = innerHeight * dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  const bits = Array.from({length:160}, () => ({
+    x: innerWidth / 2,
+    y: innerHeight * 0.45,
+    vx: (Math.random() - 0.5) * 14,
+    vy: Math.random() * -14 - 4,
+    s: Math.random() * 6 + 4,
+    r: Math.random() * Math.PI,
+    vr: (Math.random() - 0.5) * 0.3,
+    c: ["#2F6BFF","#7FB2FF","#FFFFFF","#CFE0FF"][Math.floor(Math.random() * 4)]
+  }));
+  let frames = 0;
+  (function tick(){
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    bits.forEach(b => {
+      b.vy += 0.35;
+      b.vx *= 0.99;
+      b.x += b.vx;
+      b.y += b.vy;
+      b.r += b.vr;
+      ctx.save();
+      ctx.translate(b.x,b.y);
+      ctx.rotate(b.r);
+      ctx.fillStyle = b.c;
+      ctx.fillRect(-b.s / 2, -b.s / 4, b.s, b.s / 2);
+      ctx.restore();
+    });
+    if(++frames < 220) requestAnimationFrame(tick);
+    else ctx.clearRect(0,0,innerWidth,innerHeight);
+  })();
+}
+
+buildCandles();
+</script>
+</body>
+</html>
